@@ -14,12 +14,6 @@ export function getPokemons() {
                         id: pokemon.data.id,
                         name: pokemon.data.name.toUpperCase(),
                         image: pokemon.data.sprites.other.dream_world.front_default,
-                        height: pokemon.data.height,
-                        weight: pokemon.data.weight,
-                        hp: pokemon.data.stats[0].base_stat,
-                        attack: pokemon.data.stats[1].base_stat,
-                        defense: pokemon.data.stats[2].base_stat,
-                        speed: pokemon.data.stats[5].base_stat,
                         types: pokemon.data.types.map(t => {
                             return t.type.name.toUpperCase()
                         })
@@ -52,10 +46,24 @@ export function getTypes() {
 export function getDetail(id) {
     return async function (dispatch) {
         try {
-            let detail = await axios.get(`/${id}`)
+            let detail = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
+            detail = {
+                    id: detail.data.id,
+                    name: detail.data.name.toUpperCase(),
+                    image: detail.data.sprites.other.dream_world.front_default,
+                    height: detail.data.height,
+                    weight: detail.data.weight,
+                    hp: detail.data.stats[0].base_stat,
+                    attack: detail.data.stats[1].base_stat,
+                    defense: detail.data.stats[2].base_stat,
+                    speed: detail.data.stats[5].base_stat,
+                    types: detail.data.types.map(t => {
+                        return t.type.name.toUpperCase()
+                    })
+            }
             return dispatch({
                 type: GET_DETAIL,
-                payload: detail.data
+                payload: detail
             })
         } catch (error) {
             console.log(error);
