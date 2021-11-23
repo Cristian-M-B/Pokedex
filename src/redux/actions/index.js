@@ -3,6 +3,8 @@ import { GET_POKEMONS } from './constants.js';
 import { GET_TYPES } from './constants.js';
 import { GET_DETAIL } from './constants.js';
 import { REMOVE_DETAIL } from './constants.js';
+import { SORT_BY_NAME } from './constants.js';
+import { SORT_BY_NUMBER } from './constants.js';
 
 export function getPokemons() {
     return async function (dispatch) {
@@ -74,5 +76,19 @@ export function getDetail(id) {
 export function removeDetail() {
     return{
         type: REMOVE_DETAIL
+    }
+}
+
+export function sortByName(order) {
+    return{
+        type: SORT_BY_NAME,
+        payload: order
+    }
+}
+
+export function sortByNumber(order) {
+    return{
+        type: SORT_BY_NUMBER,
+        payload: order
     }
 }

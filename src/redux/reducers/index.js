@@ -2,6 +2,7 @@ import { GET_POKEMONS } from "../actions/constants";
 import { GET_TYPES } from "../actions/constants";
 import { GET_DETAIL } from "../actions/constants";
 import { REMOVE_DETAIL } from "../actions/constants";
+import { SORT_BY_NAME, SORT_BY_NUMBER } from "../actions/constants";
 
 var initialState = {
     pokemons: [],
@@ -36,6 +37,35 @@ function reducer(state = initialState, action) {
             ...state,
             detail: {}
         }
+
+        case SORT_BY_NAME:
+            let pokemonsName = action.payload === 'A-Z' ? state.pokemons.sort((a,b) => {
+                if(a.name > b.name) return 1;
+                if(a.name < b.name) return -1;
+                return 0;
+            })
+            : state.pokemons.sort((a,b) => {
+                if(a.name > b.name) return -1;
+                if(a.name < b.name) return 1;
+                return 0;
+            })
+            return {
+            ...state,
+            pokemons: pokemonsName
+        }
+
+        case SORT_BY_NUMBER:
+            let pokemonsNumber = action.payload === '1-150' ? 
+            state.pokemons.sort((a,b) => {
+                return a.id - b.id;
+            })
+            : state.pokemons.sort((a,b) => {
+                return b.id - a.id;
+            })
+            return {
+                ...state,
+                pokemons: pokemonsNumber
+            }
 
         default: return state
     }
