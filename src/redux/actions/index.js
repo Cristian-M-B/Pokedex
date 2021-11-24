@@ -5,6 +5,7 @@ import { GET_DETAIL } from './constants.js';
 import { REMOVE_DETAIL } from './constants.js';
 import { SORT_BY_NAME } from './constants.js';
 import { SORT_BY_NUMBER } from './constants.js';
+import { FILTER_BY_TYPE } from './constants.js';
 
 export function getPokemons() {
     return async function (dispatch) {
@@ -34,10 +35,11 @@ export function getPokemons() {
 export function getTypes() {
     return async function (dispatch) {
         try {
-            let types = await axios.get(``)
+            let typesApi = await axios.get(`https://pokeapi.co/api/v2/type`)
+            let types = typesApi.data.results.map(type => type.name)
             return dispatch({
                 type: GET_TYPES,
-                payload: types.data
+                payload: types
             })
         } catch (error) {
             console.log(error);
@@ -90,5 +92,12 @@ export function sortByNumber(order) {
     return{
         type: SORT_BY_NUMBER,
         payload: order
+    }
+}
+
+export function filterByType(type) {
+    return{
+        type: FILTER_BY_TYPE,
+        payload: type
     }
 }
