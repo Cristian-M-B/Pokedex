@@ -2,10 +2,11 @@ import { GET_POKEMONS } from "../actions/constants";
 import { GET_TYPES } from "../actions/constants";
 import { GET_DETAIL } from "../actions/constants";
 import { REMOVE_DETAIL } from "../actions/constants";
-import { SORT_BY_NAME, SORT_BY_NUMBER } from "../actions/constants";
+import { SORT_BY_NAME, SORT_BY_NUMBER, FILTER_BY_TYPE } from "../actions/constants";
 
 var initialState = {
     pokemons: [],
+    allPokemons: [],
     types: [],
     detail: {},
     favorites:[],
@@ -18,6 +19,7 @@ function reducer(state = initialState, action) {
             return {
             ...state,
             pokemons: action.payload,
+            allPokemons: action.payload
         }
 
         case GET_TYPES:
@@ -39,7 +41,8 @@ function reducer(state = initialState, action) {
         }
 
         case SORT_BY_NAME:
-            let pokemonsName = action.payload === 'A-Z' ? state.pokemons.sort((a,b) => {
+            let pokemonsName = action.payload === 'A-Z' ? 
+            state.pokemons.sort((a,b) => {
                 if(a.name > b.name) return 1;
                 if(a.name < b.name) return -1;
                 return 0;
@@ -66,6 +69,24 @@ function reducer(state = initialState, action) {
                 ...state,
                 pokemons: pokemonsNumber
             }
+
+            case FILTER_BY_TYPE:
+                let pokemonsFiltered = [];
+                if(action.payload === 'all') {
+                    pokemonsFiltered = state.allPokemons
+                } else {
+                    state.allPokemons.forEach(pokemon => {
+                        pokemon.types.forEach(type => {
+                            if(type.toLowerCase() === action.payload) {
+                                pokemonsFiltered.push(pokemon)
+                            }
+                        })
+                    })
+                }
+                return {
+                    ...state,
+                    pokemons: pokemonsFiltered
+                }
 
         default: return state
     }
