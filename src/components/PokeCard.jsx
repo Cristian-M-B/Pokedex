@@ -1,9 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { Card, CardMedia , CardContent , CardActions , Typography, IconButton, Divider } from '@material-ui/core';
 import { Favorite } from '@material-ui/icons';
+import { addFavorite, removeFavorite } from '../redux/actions/index';
 
 export default function PokeCard({id, name, image, types}) {
+    const favorites = useSelector(state => state.favorites)
+    const dispatch = useDispatch();
+
+    function handleFavorite(){
+        let status = favorites.find(pokemon => pokemon.id === id);
+        if(!status){
+            dispatch(addFavorite({id, name, image, types}));
+        } else {
+            dispatch(removeFavorite(id));
+        }
+    }
+
     return (
         <Card style={{ margin: '3vh' }}>
             <Link to={`/pokedex/detail/${id}`} style={{ textDecoration: 'none' }}>
@@ -20,7 +34,7 @@ export default function PokeCard({id, name, image, types}) {
                 <Divider />
             </Link>
             <CardActions>
-                <IconButton size="small">
+                <IconButton size="small" onClick={handleFavorite}>
                     <Favorite />
                 </IconButton>
             </CardActions>
