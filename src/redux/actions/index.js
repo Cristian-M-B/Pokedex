@@ -6,6 +6,8 @@ import { REMOVE_DETAIL } from './constants.js';
 import { SORT_BY_NAME } from './constants.js';
 import { SORT_BY_NUMBER } from './constants.js';
 import { FILTER_BY_TYPE } from './constants.js';
+import { ADD_FAVORITE } from './constants.js';
+import { REMOVE_FAVORITE } from './constants.js';
 
 export function getPokemons() {
     return async function (dispatch) {
@@ -99,5 +101,19 @@ export function filterByType(type) {
     return{
         type: FILTER_BY_TYPE,
         payload: type
+    }
+}
+
+export function addFavorite(pokemon){
+    return{
+        type: ADD_FAVORITE,
+        payload: pokemon
+    }
+}
+
+export function removeFavorite(id){
+    return{
+        type: REMOVE_FAVORITE,
+        payload: id
     }
 }
