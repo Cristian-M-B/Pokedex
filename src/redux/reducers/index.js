@@ -1,8 +1,8 @@
 import { GET_POKEMONS } from "../actions/constants";
 import { GET_TYPES } from "../actions/constants";
-import { GET_DETAIL } from "../actions/constants";
-import { REMOVE_DETAIL } from "../actions/constants";
+import { GET_DETAIL, REMOVE_DETAIL } from "../actions/constants";
 import { SORT_BY_NAME, SORT_BY_NUMBER, FILTER_BY_TYPE } from "../actions/constants";
+import { ADD_FAVORITE, REMOVE_FAVORITE } from "../actions/constants";
 
 var initialState = {
     pokemons: [],
@@ -70,22 +70,34 @@ function reducer(state = initialState, action) {
                 pokemons: pokemonsNumber
             }
 
-            case FILTER_BY_TYPE:
-                let pokemonsFiltered = [];
-                if(action.payload === 'all') {
-                    pokemonsFiltered = state.allPokemons
-                } else {
-                    state.allPokemons.forEach(pokemon => {
-                        pokemon.types.forEach(type => {
-                            if(type.toLowerCase() === action.payload) {
-                                pokemonsFiltered.push(pokemon)
-                            }
-                        })
+        case FILTER_BY_TYPE:
+            let pokemonsFiltered = [];
+            if (action.payload === 'all') {
+                pokemonsFiltered = state.allPokemons
+            } else {
+                state.allPokemons.forEach(pokemon => {
+                    pokemon.types.forEach(type => {
+                        if (type.toLowerCase() === action.payload) {
+                            pokemonsFiltered.push(pokemon)
+                        }
                     })
-                }
+                })
+            }
+            return {
+                ...state,
+                pokemons: pokemonsFiltered
+            }
+
+        case ADD_FAVORITE:
+            return {
+                ...state,
+                favorites: [...state.favorites, action.payload]
+            }
+
+            case REMOVE_FAVORITE:
                 return {
                     ...state,
-                    pokemons: pokemonsFiltered
+                    favorites: state.favorites.filter(pokemon => pokemon.id !== action.payload)
                 }
 
         default: return state
