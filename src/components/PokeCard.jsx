@@ -8,9 +8,10 @@ import { addFavorite, removeFavorite } from '../redux/actions/index';
 export default function PokeCard({id, name, image, types}) {
     const favorites = useSelector(state => state.favorites)
     const dispatch = useDispatch();
+    let status = false;
 
     function handleFavorite(){
-        let status = favorites.find(pokemon => pokemon.id === id);
+        let status = favorites?.find(pokemon => pokemon.id === id);
         if(!status){
             dispatch(addFavorite({id, name, image, types}));
         } else {
@@ -33,9 +34,15 @@ export default function PokeCard({id, name, image, types}) {
                 </CardContent>
                 <Divider />
             </Link>
+            {favorites?.forEach(pokemon => {
+                if(pokemon.id === id) status = true 
+            })}
             <CardActions>
                 <IconButton size="small" onClick={handleFavorite}>
-                    <Favorite />
+                    {status ? 
+                        <Favorite color='error'/>
+                        : <Favorite/>
+                    }
                 </IconButton>
             </CardActions>
         </Card >
