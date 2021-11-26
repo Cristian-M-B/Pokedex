@@ -3,6 +3,7 @@ import { GET_TYPES } from "../actions/constants";
 import { GET_DETAIL, REMOVE_DETAIL } from "../actions/constants";
 import { SORT_BY_NAME, SORT_BY_NUMBER, FILTER_BY_TYPE } from "../actions/constants";
 import { ADD_FAVORITE, REMOVE_FAVORITE } from "../actions/constants";
+import { SORT_FAVORITE_BY_NAME, SORT_FAVORITE_BY_NUMBER } from "../actions/constants";
 
 var initialState = {
     pokemons: [],
@@ -94,11 +95,41 @@ function reducer(state = initialState, action) {
                 favorites: [...state.favorites, action.payload]
             }
 
-            case REMOVE_FAVORITE:
-                return {
-                    ...state,
-                    favorites: state.favorites.filter(pokemon => pokemon.id !== action.payload)
-                }
+        case REMOVE_FAVORITE:
+            return {
+                ...state,
+                favorites: state.favorites.filter(pokemon => pokemon.id !== action.payload)
+            }
+
+        case SORT_FAVORITE_BY_NAME:
+            let favoritesName = action.payload === 'A-Z' ?
+                state.favorites.sort((a, b) => {
+                    if (a.name > b.name) return 1;
+                    if (a.name < b.name) return -1;
+                    return 0;
+                })
+                : state.favorites.sort((a, b) => {
+                    if (a.name > b.name) return -1;
+                    if (a.name < b.name) return 1;
+                    return 0;
+                })
+            return {
+                ...state,
+                favorites: favoritesName
+            }
+
+        case SORT_FAVORITE_BY_NUMBER:
+            let favoritesNumber = action.payload === '1-150' ?
+                state.favorites.sort((a, b) => {
+                    return a.id - b.id;
+                })
+                : state.favorites.sort((a, b) => {
+                    return b.id - a.id;
+                })
+            return {
+                ...state,
+                favorites: favoritesNumber
+            }
 
         default: return state
     }

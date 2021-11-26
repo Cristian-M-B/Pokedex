@@ -8,6 +8,8 @@ import { SORT_BY_NUMBER } from './constants.js';
 import { FILTER_BY_TYPE } from './constants.js';
 import { ADD_FAVORITE } from './constants.js';
 import { REMOVE_FAVORITE } from './constants.js';
+import { SORT_FAVORITE_BY_NAME } from './constants.js';
+import { SORT_FAVORITE_BY_NUMBER } from './constants.js';
 
 export function getPokemons() {
     return async function (dispatch) {
@@ -115,5 +117,19 @@ export function removeFavorite(id){
     return{
         type: REMOVE_FAVORITE,
         payload: id
+    }
+}
+
+export function sortFavoriteByName(order) {
+    return{
+        type: SORT_FAVORITE_BY_NAME,
+        payload: order
+    }
+}
+
+export function sortFavoriteByNumber(order) {
+    return{
+        type: SORT_FAVORITE_BY_NUMBER,
+        payload: order
     }
 }
