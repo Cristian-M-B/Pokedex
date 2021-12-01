@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Grid, FormControl, InputLabel, Select, MenuItem, Pagination } from '@material-ui/core';
+import { Grid, FormControl, InputLabel, Select, MenuItem, Typography, Pagination } from '@material-ui/core';
 import { sortFavoriteByName, sortFavoriteByNumber } from '../redux/actions/index';
 import PokeCard from './PokeCard';
 
@@ -43,53 +43,61 @@ export default function Favorites() {
 
     return (
         <>
-            <Grid
-                container
-                direction='row'
-                justifyContent='center'
-            >
-                <FormControl variant="standard" style={{ width: 120, margin: '3vh' }}>
-                    <InputLabel>Nombre</InputLabel>
-                    <Select value={select.name} onChange={(e) => handleSortName(e)}>
-                        <MenuItem value='A-Z'>A - Z</MenuItem>
-                        <MenuItem value='Z-A'>Z - A</MenuItem>
-                    </Select>
-                </FormControl>
+            {favorites?.length ?
+                <>
+                    <Grid
+                        container
+                        direction='row'
+                        justifyContent='center'
+                    >
+                        <FormControl variant="standard" style={{ width: 120, margin: '3vh' }}>
+                            <InputLabel>Nombre</InputLabel>
+                            <Select value={select.name} onChange={(e) => handleSortName(e)}>
+                                <MenuItem value='A-Z'>A - Z</MenuItem>
+                                <MenuItem value='Z-A'>Z - A</MenuItem>
+                            </Select>
+                        </FormControl>
 
-                <FormControl variant="standard" style={{ width: 120, margin: '3vh' }}>
-                    <InputLabel>Número</InputLabel>
-                    <Select value={select.number} onChange={(e) => handleSortNumber(e)}>
-                        <MenuItem value='1-150'>1 - 150</MenuItem>
-                        <MenuItem value='150-1'>150 - 1</MenuItem>
-                    </Select>
-                </FormControl>
-            </Grid>
-            <Grid
-                container
-                direction='row'
-                justifyContent='center'
-            >
-                {currentFavorites?.map(poke => {
-                    return <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-                        <PokeCard id={poke.id} name={poke.name} type={poke.types} image={poke.image} key={poke.id} />
+                        <FormControl variant="standard" style={{ width: 120, margin: '3vh' }}>
+                            <InputLabel>Número</InputLabel>
+                            <Select value={select.number} onChange={(e) => handleSortNumber(e)}>
+                                <MenuItem value='1-150'>1 - 150</MenuItem>
+                                <MenuItem value='150-1'>150 - 1</MenuItem>
+                            </Select>
+                        </FormControl>
                     </Grid>
-                })}
-            </Grid>
-            <Grid
-                container
-                direction='row'
-                justifyContent='center'
-            >
-                <Pagination
-                    count={Math.ceil(favorites.length / favoritesPerPage)}
-                    page={page}
-                    onChange={handleChange}
-                    variant="outlined"
-                    shape="rounded"
-                    color="primary"
-                    style={{ marginBottom: "2vw ", marginTop: "1vw" }}
-                />
-            </Grid>
+
+                    <Grid
+                        container
+                        direction='row'
+                        justifyContent='center'
+                    >
+                        {currentFavorites?.map(poke => {
+                            return <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
+                                <PokeCard id={poke.id} name={poke.name} type={poke.types} image={poke.image} key={poke.id} />
+                            </Grid>
+                        })}
+                    </Grid>
+
+                    <Grid
+                        container
+                        direction='row'
+                        justifyContent='center'
+                    >
+                        <Pagination
+                            count={Math.ceil(favorites.length / favoritesPerPage)}
+                            page={page}
+                            onChange={handleChange}
+                            variant="outlined"
+                            shape="rounded"
+                            color="primary"
+                            style={{ marginBottom: "2vw ", marginTop: "1vw" }}
+                        />
+                    </Grid>
+                </>
+
+                : <Typography variant="h4" style={{marginTop:'40vh'}}> No tenes favoritos</Typography>
+            }
         </>
     )
 }
