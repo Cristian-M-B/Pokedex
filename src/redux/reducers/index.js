@@ -2,9 +2,8 @@ import { GET_POKEMONS } from "../actions/constants";
 import { GET_TYPES } from "../actions/constants";
 import { GET_DETAIL, REMOVE_DETAIL } from "../actions/constants";
 import { SORT_BY_NAME, SORT_BY_NUMBER, FILTER_BY_TYPE } from "../actions/constants";
-import { ADD_FAVORITE, REMOVE_FAVORITE } from "../actions/constants";
+import { GET_FAVORITES, ADD_FAVORITE, REMOVE_FAVORITE } from "../actions/constants";
 import { SORT_FAVORITE_BY_NAME, SORT_FAVORITE_BY_NUMBER } from "../actions/constants";
-
 var initialState = {
     pokemons: [],
     allPokemons: [],
@@ -89,13 +88,23 @@ function reducer(state = initialState, action) {
                 pokemons: pokemonsFiltered
             }
 
+        case GET_FAVORITES:
+            let response = JSON.parse(localStorage.getItem('favorites'));
+            let res = response? response : state.favorites;
+            return {
+                ...state,
+                favorites: res
+            }
+
         case ADD_FAVORITE:
+            localStorage.setItem('favorites', JSON.stringify([...state.favorites, action.payload]));
             return {
                 ...state,
                 favorites: [...state.favorites, action.payload]
             }
 
         case REMOVE_FAVORITE:
+            localStorage.setItem('favorites', JSON.stringify(state.favorites.filter(pokemon => pokemon.id !== action.payload)));
             return {
                 ...state,
                 favorites: state.favorites.filter(pokemon => pokemon.id !== action.payload)
