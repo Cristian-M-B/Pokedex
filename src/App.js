@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getPokemons } from './redux/actions/index';
 import { getTypes } from './redux/actions/index';
+import { getFavorites } from './redux/actions/index';
 import './App.css';
 import Nav from './components/Nav.jsx';
 import Pokedex from './components/Pokedex.jsx';
@@ -17,6 +18,7 @@ function App() {
   useEffect(() => {
     dispatch(getPokemons());
     dispatch(getTypes());
+    dispatch(getFavorites());
   }, [dispatch])
 
   return (
