@@ -6,6 +6,7 @@ import { REMOVE_DETAIL } from './constants.js';
 import { SORT_BY_NAME } from './constants.js';
 import { SORT_BY_NUMBER } from './constants.js';
 import { FILTER_BY_TYPE } from './constants.js';
+import { GET_FAVORITES } from './constants.js';
 import { ADD_FAVORITE } from './constants.js';
 import { REMOVE_FAVORITE } from './constants.js';
 import { SORT_FAVORITE_BY_NAME } from './constants.js';
@@ -103,6 +104,12 @@ export function filterByType(type) {
     return{
         type: FILTER_BY_TYPE,
         payload: type
+    }
+}
+
+export function getFavorites(){
+    return {
+        type: GET_FAVORITES
     }
 }
 
