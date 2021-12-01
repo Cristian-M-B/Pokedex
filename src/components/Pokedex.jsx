@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Grid, FormControl, InputLabel, Select, MenuItem, Pagination } from '@material-ui/core';
+import { Grid, FormControl, InputLabel, Select, MenuItem, Pagination, CircularProgress } from '@material-ui/core';
 import PokeCard from './PokeCard';
 import { sortByName, sortByNumber, filterByType } from '../redux/actions/index';
 
@@ -57,60 +57,72 @@ export default function Pokedex() {
 
     return (
         <>
-            <Grid
-                container
-                direction='row'
-                justifyContent='center'
-            >
-                <FormControl variant="standard" style={{width:120, margin:'3vh'}}>
-                    <InputLabel>Nombre</InputLabel>
-                    <Select value={select.name} onChange={(e) => handleSortName(e)}>
-                        <MenuItem value='A-Z'>A - Z</MenuItem>
-                        <MenuItem value='Z-A'>Z - A</MenuItem>
-                    </Select>
-                </FormControl>
+            {pokemons.length ?
+                <>
+                    <Grid
+                        container
+                        direction='row'
+                        justifyContent='center'
+                    >
+                        <FormControl variant="standard" style={{ width: 120, margin: '3vh' }}>
+                            <InputLabel>Nombre</InputLabel>
+                            <Select value={select.name} onChange={(e) => handleSortName(e)}>
+                                <MenuItem value='A-Z'>A - Z</MenuItem>
+                                <MenuItem value='Z-A'>Z - A</MenuItem>
+                            </Select>
+                        </FormControl>
 
-                <FormControl variant="standard" style={{width:120, margin:'3vh'}}>
-                    <InputLabel>Número</InputLabel>
-                    <Select value={select.number} onChange={(e) => handleSortNumber(e)}>
-                        <MenuItem value='1-150'>1 - 150</MenuItem>
-                        <MenuItem value='150-1'>150 - 1</MenuItem>
-                    </Select>
-                </FormControl>
-                <FormControl variant="standard" style={{width:120, margin:'3vh'}}>
-                    <InputLabel>Tipo</InputLabel>
-                    <Select value={select.filter} onChange={(e) => handleFilterType(e)}>
-                        <MenuItem value='all'>Todos</MenuItem>
-                        {types?.map(type => <MenuItem key={type} value={type}>{type}</MenuItem>)}
-                    </Select>
-                </FormControl>
-            </Grid>
-            <Grid
-                container
-                direction='row'
-                justifyContent='center'
-            >
-                {currentPokemons?.map(poke => {
-                    return <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-                        <PokeCard id={poke.id} name={poke.name} type={poke.types} image={poke.image} key={poke.id} />
+                        <FormControl variant="standard" style={{ width: 120, margin: '3vh' }}>
+                            <InputLabel>Número</InputLabel>
+                            <Select value={select.number} onChange={(e) => handleSortNumber(e)}>
+                                <MenuItem value='1-150'>1 - 150</MenuItem>
+                                <MenuItem value='150-1'>150 - 1</MenuItem>
+                            </Select>
+                        </FormControl>
+
+                        <FormControl variant="standard" style={{ width: 120, margin: '3vh' }}>
+                            <InputLabel>Tipo</InputLabel>
+                            <Select value={select.filter} onChange={(e) => handleFilterType(e)}>
+                                <MenuItem value='all'>Todos</MenuItem>
+                                {types?.map(type => <MenuItem key={type} value={type}>{type}</MenuItem>)}
+                            </Select>
+                        </FormControl>
                     </Grid>
-                })}
-            </Grid>
-            <Grid
-                container
-                direction='row'
-                justifyContent='center'
-            >
-                <Pagination
-                    count={Math.ceil(pokemons.length / pokemonsPerPage)}
-                    page={page}
-                    onChange={handleChange}
-                    variant="outlined"
-                    shape="rounded"
-                    color="primary"
-                    style={{ marginBottom: "2vw ", marginTop: "1vw" }}
+                    
+                    <Grid
+                        container
+                        direction='row'
+                        justifyContent='center'
+                    >
+                        {currentPokemons?.map(poke => {
+                            return <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
+                                <PokeCard id={poke.id} name={poke.name} type={poke.types} image={poke.image} key={poke.id} />
+                            </Grid>
+                        })}
+                    </Grid>
+
+                    <Grid
+                        container
+                        direction='row'
+                        justifyContent='center'
+                    >
+                        <Pagination
+                            count={Math.ceil(pokemons.length / pokemonsPerPage)}
+                            page={page}
+                            onChange={handleChange}
+                            variant="outlined"
+                            shape="rounded"
+                            color="primary"
+                            style={{ marginBottom: "2vw ", marginTop: "1vw" }}
+                        />
+                    </Grid>
+                </>
+                
+                : <CircularProgress
+                    size={60}
+                    style={{ marginTop: '40vh' }}
                 />
-            </Grid>
+            }
         </>
     )
 }
