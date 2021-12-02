@@ -11,6 +11,7 @@ import { ADD_FAVORITE } from './constants.js';
 import { REMOVE_FAVORITE } from './constants.js';
 import { SORT_FAVORITE_BY_NAME } from './constants.js';
 import { SORT_FAVORITE_BY_NUMBER } from './constants.js';
+import { SEARCH_POKEMON } from './constants.js';
 
 export function getPokemons() {
     return async function (dispatch) {
@@ -138,5 +139,30 @@ export function sortFavoriteByNumber(order) {
     return{
         type: SORT_FAVORITE_BY_NUMBER,
         payload: order
+    }
+}
+
+export function searchPokemon(search) {
+    return async function (dispatch) {
+        try {
+                let pokemonApi = await axios.get(`https://pokeapi.co/api/v2/pokemon/${search}`);
+                // let response = pokemonApi.map(pokemon => {
+                //     return {
+                    let response = {
+                        id: pokemonApi.data.id,
+                        name: pokemonApi.data.name.toUpperCase(),
+                        image: pokemonApi.data.sprites.other.dream_world.front_default,
+                        types: pokemonApi.data.types.map(t => {
+                            return t.type.name.toUpperCase()
+                        })
+                    }
+                // })    
+            return dispatch({
+                type: SEARCH_POKEMON,
+                payload: response
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }
 }

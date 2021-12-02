@@ -4,6 +4,8 @@ import { GET_DETAIL, REMOVE_DETAIL } from "../actions/constants";
 import { SORT_BY_NAME, SORT_BY_NUMBER, FILTER_BY_TYPE } from "../actions/constants";
 import { GET_FAVORITES, ADD_FAVORITE, REMOVE_FAVORITE } from "../actions/constants";
 import { SORT_FAVORITE_BY_NAME, SORT_FAVORITE_BY_NUMBER } from "../actions/constants";
+import { SEARCH_POKEMON } from "../actions/constants";
+
 var initialState = {
     pokemons: [],
     allPokemons: [],
@@ -138,6 +140,12 @@ function reducer(state = initialState, action) {
             return {
                 ...state,
                 favorites: favoritesNumber
+            }
+
+        case SEARCH_POKEMON:
+            return {
+                ...state,
+                pokemons: [action.payload]
             }
 
         default: return state
