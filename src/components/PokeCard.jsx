@@ -21,7 +21,7 @@ export default function PokeCard({id, name, image, types}) {
 
     return (
         <Card style={{ margin: '3vh' }}>
-            <Link to={`/pokedex/detail/${id}`} style={{ textDecoration: 'none' }}>
+            <Link to={`/pokedex/detail/${id}`} style={{ textDecoration: 'none', color:'black' }}>
                 <CardMedia
                     component="img"
                     height="300vh"

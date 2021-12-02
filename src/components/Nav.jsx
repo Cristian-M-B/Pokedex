@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-// import  { styled }  from '@material-ui/styles';
 import { AppBar, Toolbar, IconButton, Badge, Typography, Grid, Switch } from '@material-ui/core';
 import { Favorite } from '@material-ui/icons';
 import SearchBar from './SearchBar';
@@ -19,7 +18,7 @@ export default function Nav() {
             <Toolbar style={{marginBotton:'5vh'}}>
                 <Grid container direction="row" justifyContent="space-between" alignItems="center">
                     {/* <Grid container direction="row" justifyContent="flex-start" alignItems="center"> */}
-                    <Link to={`/pokedex`} style={{ textDecoration: 'none' }}>
+                    <Link to={`/pokedex`} style={{ textDecoration: 'none', color: 'white' }}>
                         <Typography>POKEDEX</Typography>
                     </Link>
                     <Typography>ABOUT</Typography>
@@ -41,7 +40,7 @@ export default function Nav() {
                     <Switch 
                         checked={checked}
                         onChange={handleChange}
-                        color={checked? 'secondary' : 'info'}
+                        style={{color: checked? 'black':'white'}}
                     />
                     {/* </Grid> */}
                 </Grid>
