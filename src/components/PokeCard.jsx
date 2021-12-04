@@ -29,7 +29,7 @@ export default function PokeCard({id, name, image, types}) {
                 />
                 <CardContent>
                     <Typography variant="h5">
-                        {name}
+                        #{id} {name}
                     </Typography>
                 </CardContent>
                 <Divider />
