@@ -145,7 +145,7 @@ function reducer(state = initialState, action) {
         case SEARCH_POKEMON:
             return {
                 ...state,
-                pokemons: [action.payload]
+                pokemons: action.payload
             }
 
         default: return state
