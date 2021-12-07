@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { TextField, Button } from '@material-ui/core';
+import { OutlinedInput, InputAdornment, IconButton } from '@material-ui/core';
+import { Search } from '@material-ui/icons';
 import { searchPokemon } from '../redux/actions/index.js';
 
 export default function SearchBar() {
@@ -22,23 +23,21 @@ export default function SearchBar() {
 
     return (
         <form onSubmit={e => handleSubmit(e)}>
-
-            <TextField
+            <OutlinedInput
                 variant="outlined"
                 // color="primary"
-                placeholder="Buscar pokemon"
+                placeholder="Buscar pokemon ... "
                 value={input}
                 onChange={e => handleInput(e)}
-                style={{backgroundColor: 'white', borderRadius:'1vh'}}
+                style={{ backgroundColor: 'white', borderRadius: '1vh' }}
+                startAdornment={
+                    <InputAdornment position="start">
+                        <IconButton onClick={handleSubmit}>
+                            <Search />
+                        </IconButton>
+                    </InputAdornment>
+                }
             />
-            {/* <Button
-                variant="outlined"
-                color="warning"
-                onClick={handleSubmit}
-            >
-                Buscar
-            </Button> */}
-    
         </form>
     )
 }
