@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Grid, FormControl, InputLabel, Select, MenuItem, Typography, Pagination } from '@material-ui/core';
 import { sortFavoriteByName, sortFavoriteByNumber } from '../redux/actions/index';
+import Nav from './Nav';
 import PokeCard from './PokeCard';
 
 export default function Favorites() {
@@ -43,6 +44,7 @@ export default function Favorites() {
 
     return (
         <>
+            <Nav />
             {favorites?.length ?
                 <>
                     <Grid

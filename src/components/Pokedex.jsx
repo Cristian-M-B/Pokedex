@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Grid, FormControl, InputLabel, Select, MenuItem, Pagination, CircularProgress } from '@material-ui/core';
+import Nav from './Nav';
 import PokeCard from './PokeCard';
 import { sortByName, sortByNumber, filterByType } from '../redux/actions/index';
 
@@ -57,6 +58,7 @@ export default function Pokedex() {
 
     return (
         <>
+            <Nav />
             {pokemons.length ?
                 <>
                     <Grid
@@ -88,7 +90,7 @@ export default function Pokedex() {
                             </Select>
                         </FormControl>
                     </Grid>
-                    
+
                     <Grid
                         container
                         direction='row'
@@ -117,7 +119,7 @@ export default function Pokedex() {
                         />
                     </Grid>
                 </>
-                
+
                 : <CircularProgress
                     size={60}
                     style={{ marginTop: '40vh' }}

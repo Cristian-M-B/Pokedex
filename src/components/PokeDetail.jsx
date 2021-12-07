@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDetail, removeDetail } from '../redux/actions/index';
 import { Grid, CardMedia, Typography, CircularProgress } from '@material-ui/core';
+import Nav from './Nav';
 
 export default function PokeDetail() {
     const {id} = useParams();
@@ -19,6 +20,7 @@ export default function PokeDetail() {
 
     return (
         <>
+            <Nav />
             {pokemon.name ?
                 <Grid
                     container
