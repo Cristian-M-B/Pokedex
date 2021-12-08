@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getDetail, removeDetail } from '../redux/actions/index';
 import { Grid, CardMedia, Typography, CircularProgress } from '@material-ui/core';
 import Nav from './Nav';
+import images from '../assets/images.js';
 
 export default function PokeDetail() {
     const {id} = useParams();
@@ -37,9 +38,9 @@ export default function PokeDetail() {
                     </Grid>
                     <Grid style={{ marginLeft: '15vh' }}>
                         <Typography align='left' variant='h4' style={{ marginBottom: '4vh' }}> #{pokemon?.id} {pokemon?.name}</Typography>
-                        <Grid container justifyContent='space-around'>
+                        <Grid container direction='row' justifyContent='center'>
                             {pokemon?.types?.map(type => {
-                                return <Typography key={type} style={{ display: 'inline-block' }}>{type}</Typography>
+                                return <img key={type} src={images[type]} height='90vh' />
                             })}
                         </Grid>
                         <Typography align='left' style={{ marginTop: '4vh' }}>HP: {pokemon?.hp}</Typography>

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Card, CardMedia, CardContent, CardActions, Typography, IconButton, Divider } from '@material-ui/core';
+import { Grid, Card, CardActionArea, CardContent, CardActions, Typography, IconButton, Divider } from '@material-ui/core';
 import { Favorite, Share } from '@material-ui/icons';
 import { WhatsappShareButton, FacebookShareButton, WhatsappIcon, FacebookIcon } from 'react-share';
 import { addFavorite, removeFavorite } from '../redux/actions/index';
+import images from '../assets/images.js';
 
 export default function PokeCard({id, name, image, types}) {
     const [shareOpen, setShareOpen] = useState(false);
@@ -27,27 +28,28 @@ export default function PokeCard({id, name, image, types}) {
 
     return (
         <Card style={{ margin: '3vh' }}>
-            <Link to={`/pokedex/detail/${id}`} style={{ textDecoration: 'none', color:'black' }}>
-                <CardMedia
-                    component="img"
-                    height="300vh"
-                    image={image}
-                />
-                <CardContent>
-                    <Typography variant="h5">
-                        #{id} {name}
-                    </Typography>
-                </CardContent>
-                <Divider />
-            </Link>
+            <CardActionArea>
+                <Link to={`/pokedex/detail/${id}`} style={{ textDecoration: 'none', color: 'black' }}>
+                    <img src={image} height="250vh" width="250vh" alt="Image Not Found" />
+                    <CardContent>
+                        <Typography variant="h5">
+                            #{id} {name}
+                        </Typography>
+                    </CardContent>
+                    {types?.map(type => {
+                        return <img key={type} src={images[type]} height="50vh" alt="Image Not Found" />
+                    })}
+                    <Divider />
+                </Link>
+            </CardActionArea>
             {favorites?.forEach(pokemon => {
-                if(pokemon.id === id) status = true 
+                if (pokemon.id === id) status = true
             })}
-            <CardActions style={{display:'flex', justifyContent:'space-between'}}>
+            <CardActions style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <IconButton size="small" onClick={handleFavorite}>
-                    {status ? 
-                        <Favorite color='error'/>
-                        : <Favorite/>
+                    {status ?
+                        <Favorite color='error' />
+                        : <Favorite />
                     }
                 </IconButton>
                 {shareOpen && (
@@ -59,7 +61,7 @@ export default function PokeCard({id, name, image, types}) {
                             <WhatsappIcon round={true} style={{ width: "5vh", height: "5vh" }} />
                         </WhatsappShareButton>
                         <FacebookShareButton
-                            url={`https://amadeus.vercel.app/detail/614df55e887587966406cd59`}
+                            url={`http://localhost:3000/pokedex/detail/${id}`}
                             quote="¡Mira este pokemon!"
                             hashtag="#pokemon"
                         >
@@ -68,7 +70,7 @@ export default function PokeCard({id, name, image, types}) {
                     </>
                 )}
                 <IconButton size="small" onClick={handleShare}>
-                    <Share/>
+                    <Share />
                 </IconButton>
             </CardActions>
         </Card >
