@@ -24,7 +24,7 @@ export function getPokemons() {
                         name: pokemon.data.name.toUpperCase(),
                         image: pokemon.data.sprites.other.dream_world.front_default,
                         types: pokemon.data.types.map(t => {
-                            return t.type.name.toUpperCase()
+                            return t.type.name
                         })
                     }
                 })    
@@ -45,7 +45,7 @@ export function getTypes() {
             let types = typesApi.data.results.map(type => type.name)
             return dispatch({
                 type: GET_TYPES,
-                payload: types
+                payload: types.slice(0, types.length - 2)
             })
         } catch (error) {
             console.log(error);
@@ -68,7 +68,7 @@ export function getDetail(id) {
                     defense: detail.data.stats[2].base_stat,
                     speed: detail.data.stats[5].base_stat,
                     types: detail.data.types.map(t => {
-                        return t.type.name.toUpperCase()
+                        return t.type.name
                     })
             }
             return dispatch({
@@ -151,7 +151,7 @@ export function searchPokemon(search) {
                 name: pokemonApi.data.name.toUpperCase(),
                 image: pokemonApi.data.sprites.other.dream_world.front_default,
                 types: pokemonApi.data.types.map(t => {
-                    return t.type.name.toUpperCase()
+                    return t.type.name
                 })
             }
             return dispatch({
