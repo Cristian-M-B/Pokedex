@@ -25,9 +25,14 @@ function reducer(state = initialState, action) {
         }
 
         case GET_TYPES:
+            let types = action.payload.sort((a,b) => {
+                if(a > b) return 1;
+                if(a < b) return -1;
+                return 0;
+            })
             return {
             ...state,
-            types: action.payload
+            types: types
         }
 
         case GET_DETAIL:
