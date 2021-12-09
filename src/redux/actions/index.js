@@ -16,7 +16,7 @@ import { SEARCH_POKEMON } from './constants.js';
 export function getPokemons() {
     return async function (dispatch) {
         try {
-                let pokemonsApi = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=150`);
+                let pokemonsApi = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=251`);
                 let pokemons = await Promise.all(pokemonsApi.data.results.map(async pokemon => await axios (pokemon.url))) 
                 pokemons = pokemons.map(pokemon => {
                     return {

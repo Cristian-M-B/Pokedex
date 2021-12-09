@@ -26,7 +26,7 @@ export default function SearchBar() {
             <OutlinedInput
                 variant="outlined"
                 // color="primary"
-                placeholder="Buscar pokemon ... "
+                placeholder="Search pokemon ... "
                 value={input}
                 onChange={e => handleInput(e)}
                 style={{ backgroundColor: 'white', borderRadius: '1vh' }}

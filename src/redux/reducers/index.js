@@ -48,7 +48,7 @@ function reducer(state = initialState, action) {
         }
 
         case SORT_BY_NAME:
-            let pokemonsName = action.payload === 'A-Z' ? 
+            let pokemonsName = action.payload === 'asc' ? 
             state.pokemons.sort((a,b) => {
                 if(a.name > b.name) return 1;
                 if(a.name < b.name) return -1;
@@ -65,7 +65,7 @@ function reducer(state = initialState, action) {
         }
 
         case SORT_BY_NUMBER:
-            let pokemonsNumber = action.payload === '1-150' ? 
+            let pokemonsNumber = action.payload === 'asc' ? 
             state.pokemons.sort((a,b) => {
                 return a.id - b.id;
             })
@@ -118,7 +118,7 @@ function reducer(state = initialState, action) {
             }
 
         case SORT_FAVORITE_BY_NAME:
-            let favoritesName = action.payload === 'A-Z' ?
+            let favoritesName = action.payload === 'asc' ?
                 state.favorites.sort((a, b) => {
                     if (a.name > b.name) return 1;
                     if (a.name < b.name) return -1;
@@ -135,7 +135,7 @@ function reducer(state = initialState, action) {
             }
 
         case SORT_FAVORITE_BY_NUMBER:
-            let favoritesNumber = action.payload === '1-150' ?
+            let favoritesNumber = action.payload === 'asc' ?
                 state.favorites.sort((a, b) => {
                     return a.id - b.id;
                 })

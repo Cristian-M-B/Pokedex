@@ -4,7 +4,6 @@ import { Grid, FormControl, InputLabel, Select, MenuItem, Pagination, CircularPr
 import Nav from './Nav';
 import PokeCard from './PokeCard';
 import { sortByName, sortByNumber, filterByType } from '../redux/actions/index';
-// import images from '../assets/images.js';
 
 export default function Pokedex() {
     const pokemons = useSelector(state => state.pokemons);
@@ -21,7 +20,6 @@ export default function Pokedex() {
     const indexLastPokemons = page * pokemonsPerPage;
     const indexFirstPokemons = indexLastPokemons - pokemonsPerPage;
     const currentPokemons = pokemons.slice(indexFirstPokemons, indexLastPokemons);
-
     
     function handleChange(event, value) {
         setPage(value);
@@ -68,42 +66,28 @@ export default function Pokedex() {
                         justifyContent='center'
                     >
                         <FormControl variant="standard" style={{ width: 120, margin: '3vh' }}>
-                            <InputLabel>Nombre</InputLabel>
+                            <InputLabel>Name</InputLabel>
                             <Select value={select.name} onChange={(e) => handleSortName(e)}>
-                                <MenuItem value='A-Z'>A - Z</MenuItem>
-                                <MenuItem value='Z-A'>Z - A</MenuItem>
+                                <MenuItem value='asc'>A - Z</MenuItem>
+                                <MenuItem value='des'>Z - A</MenuItem>
                             </Select>
                         </FormControl>
 
                         <FormControl variant="standard" style={{ width: 120, margin: '3vh' }}>
-                            <InputLabel>Número</InputLabel>
+                            <InputLabel>Number</InputLabel>
                             <Select value={select.number} onChange={(e) => handleSortNumber(e)}>
-                                <MenuItem value='1-150'>1 - 150</MenuItem>
-                                <MenuItem value='150-1'>150 - 1</MenuItem>
+                                <MenuItem value='asc'>1 - 251</MenuItem>
+                                <MenuItem value='des'>251 - 1</MenuItem>
                             </Select>
                         </FormControl>
 
                         <FormControl variant="standard" style={{ width: 120, margin: '3vh' }}>
-                            <InputLabel>Tipo</InputLabel>
+                            <InputLabel>Type</InputLabel>
                             <Select value={select.filter} onChange={(e) => handleFilterType(e)}>
-                                <MenuItem value='all'>all</MenuItem>
-                                {types?.map(type => <MenuItem key={type} value={type}>{type}</MenuItem>)}
+                                <MenuItem value='all'>All</MenuItem>
+                                {types?.map(type => <MenuItem key={type} value={type}>{type.substring(0,1).toUpperCase()+type.substring(1)}</MenuItem>)}
                             </Select>
                         </FormControl>
-
-                        {/* <FormControl variant="standard" style={{ width: 120, margin: '3vh' }}>
-                            <InputLabel>Tipo</InputLabel>
-                            <Select value={select.filter} onChange={(e) => handleFilterType(e)}>
-                                <MenuItem value='all'>all</MenuItem>
-                                {types?.map(type => <MenuItem key={type} value={type}>
-                                    <CardMedia
-                                        component="img"
-                                        height='70vh'
-                                        image={images[type]}
-                                    />
-                                </MenuItem>)}
-                            </Select>
-                        </FormControl> */}
                     </Grid>
 
                     <Grid
