@@ -5,6 +5,7 @@ import { getDetail, removeDetail } from '../redux/actions/index';
 import { Grid, CardMedia, Typography, CircularProgress } from '@material-ui/core';
 import Nav from './Nav';
 import images from '../assets/images.js';
+import './animations.css';
 
 export default function PokeDetail() {
     const {id} = useParams();
@@ -27,16 +28,18 @@ export default function PokeDetail() {
                     container
                     direction='row'
                     justifyContent='center'
+                    alignItems='center'
                     style={{ marginTop: '20vh' }}
+                    className='animations'
                 >
-                    <Grid>
+                    <Grid justifyContent='center'>
                         <CardMedia
                             component="img"
                             height="300vh"
                             image={pokemon?.image}
                         />
                     </Grid>
-                    <Grid style={{ marginLeft: '15vh' }}>
+                    <Grid justifyContent='center' style={{ marginLeft: '15vh' }}>
                         <Typography align='left' variant='h4' style={{ marginBottom: '4vh' }}> #{pokemon?.id} {pokemon?.name}</Typography>
                         <Grid container direction='row' justifyContent='center'>
                             {pokemon?.types?.map(type => {
