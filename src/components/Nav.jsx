@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { AppBar, Toolbar, Grid, Typography, IconButton, Badge } from '@material-ui/core';
 import { Favorite, MusicNote, MusicOff } from '@material-ui/icons';
 import SearchBar from './SearchBar';
-import opening from '../assets/opening.mp3';
+import opening from '../assets/audios/opening.mp3';
 
 export default function Nav() {
     const [sound, setSound] = useState(false);
