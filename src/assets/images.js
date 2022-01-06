@@ -17,7 +17,7 @@ import rock from './images/rock.jpg';
 import steel from './images/steel.jpg';
 import water from './images/water.jpg';
 
-export default {
+const types = {
     bug,
     dark,
     dragon,
@@ -37,3 +37,5 @@ export default {
     steel,
     water
 }
+
+export default types;
