@@ -10,11 +10,11 @@ export default function SearchBar() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    function handleInput(e){
+    function handleInput(e) {
         setInput(e.target.value)
     }
 
-    function handleSubmit(e){
+    function handleSubmit(e) {
         e.preventDefault();
         dispatch(searchPokemon(input.toLowerCase()));
         setInput('');
@@ -22,10 +22,12 @@ export default function SearchBar() {
     }
 
     return (
-        <form onSubmit={e => handleSubmit(e)}>
+        <form onSubmit={e => handleSubmit(e)} style={{ width: '40%' }}>
             <OutlinedInput
+                fullWidth
+                sx={{ m: 1 }}
+                size='small'
                 variant="outlined"
-                // color="primary"
                 placeholder="Search pokemon ... "
                 value={input}
                 onChange={e => handleInput(e)}
