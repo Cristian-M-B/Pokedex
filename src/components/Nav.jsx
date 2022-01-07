@@ -15,7 +15,7 @@ export default function Nav() {
             <Toolbar style={{ marginBotton: '5vh' }}>
                 <Grid container direction="row" justifyContent="space-between" alignItems="center">
                     <Link to={`/pokedex`} style={{ textDecoration: 'none', color: 'white' }}>
-                        <Typography>POKEDEX</Typography>
+                        <Typography>Pokedex</Typography>
                     </Link>
                     <SearchBar />
                     <Grid justifyContent="flex-end">
@@ -30,7 +30,7 @@ export default function Nav() {
                             </Badge>
                         </IconButton>
                         {sound &&
-                            <audio src={opening} preload="auto" autoplay="true" />
+                            <audio src={opening} preload="auto" autoPlay={true} />
                         }
                         <IconButton style={{ color: 'white' }} onClick={() => setSound(!sound)}>
                             {sound ?
