@@ -30,14 +30,14 @@ export default function PokeCard({id, name, image, types}) {
         <Card style={{ margin: '3vh' }}>
             <CardActionArea>
                 <Link to={`/pokedex/detail/${id}`} style={{ textDecoration: 'none', color: 'black' }}>
-                    <img src={image} height="250vh" width="250vh" alt="Image Not Found" />
+                    <img src={image} height="250vh" width="250vh" alt="Not Found" />
                     <CardContent>
                         <Typography variant="h5">
                             #{id} {name}
                         </Typography>
                     </CardContent>
                     {types?.map(type => {
-                        return <img key={type} src={images[type]} height="50vh" alt="Image Not Found" />
+                        return <img key={type} src={images[type]} height="50vh" alt="Not Found" />
                     })}
                     <Divider />
                 </Link>
