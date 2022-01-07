@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Grid, FormControl, InputLabel, Select, MenuItem, Pagination, CircularProgress } from '@material-ui/core';
 import Nav from './Nav';
+import Footer from './Footer';
 import PokeCard from './PokeCard';
 import { sortByName, sortByNumber, filterByType } from '../redux/actions/index';
 
@@ -10,9 +11,9 @@ export default function Pokedex() {
     const types = useSelector(state => state.types);
     const dispatch = useDispatch();
     const [select, setSelect] = useState({
-        name:'',
-        number:'',
-        filter:''
+        name: '',
+        number: '',
+        filter: ''
     });
 
     const [page, setPage] = useState(1);
@@ -20,37 +21,37 @@ export default function Pokedex() {
     const indexLastPokemons = page * pokemonsPerPage;
     const indexFirstPokemons = indexLastPokemons - pokemonsPerPage;
     const currentPokemons = pokemons.slice(indexFirstPokemons, indexLastPokemons);
-    
+
     function handleChange(event, value) {
         setPage(value);
     }
 
-    function handleSortName(e){
+    function handleSortName(e) {
         dispatch(sortByName(e.target.value));
         setSelect({
             ...select,
             name: e.target.value,
-            number:''
+            number: ''
         })
         setPage(1);
     }
 
-    function handleSortNumber(e){
+    function handleSortNumber(e) {
         dispatch(sortByNumber(e.target.value));
         setSelect({
             ...select,
             number: e.target.value,
-            name:''
+            name: ''
         })
         setPage(1);
     }
 
-    function handleFilterType(e){
+    function handleFilterType(e) {
         dispatch(filterByType(e.target.value));
         setSelect({
             filter: e.target.value,
-            name:'',
-            number:''
+            name: '',
+            number: ''
         })
         setPage(1);
     }
@@ -85,7 +86,7 @@ export default function Pokedex() {
                             <InputLabel>Type</InputLabel>
                             <Select value={select.filter} onChange={(e) => handleFilterType(e)}>
                                 <MenuItem value='all'>All</MenuItem>
-                                {types?.map(type => <MenuItem key={type} value={type}>{type.substring(0,1).toUpperCase()+type.substring(1)}</MenuItem>)}
+                                {types?.map(type => <MenuItem key={type} value={type}>{type.substring(0, 1).toUpperCase() + type.substring(1)}</MenuItem>)}
                             </Select>
                         </FormControl>
                     </Grid>
@@ -96,8 +97,8 @@ export default function Pokedex() {
                         justifyContent='center'
                     >
                         {currentPokemons?.map(poke => {
-                            return <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-                                <PokeCard id={poke.id} name={poke.name} types={poke.types} image={poke.image} key={poke.id} />
+                            return <Grid item xs={12} sm={6} md={4} lg={3} xl={2}  key={poke.id}>
+                                <PokeCard id={poke.id} name={poke.name} types={poke.types} image={poke.image} />
                             </Grid>
                         })}
                     </Grid>
@@ -119,11 +120,14 @@ export default function Pokedex() {
                     </Grid>
                 </>
 
-                : <CircularProgress
-                    size={60}
-                    style={{ marginTop: '40vh' }}
-                />
+                : <div style={{ height: '77.7vh' }}>
+                    <CircularProgress
+                        size={60}
+                        style={{ marginTop: '40vh' }}
+                    />
+                </div>
             }
+            <Footer />
         </>
     )
 }

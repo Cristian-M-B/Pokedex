@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Grid, FormControl, InputLabel, Select, MenuItem, Typography, Pagination } from '@material-ui/core';
 import { sortFavoriteByName, sortFavoriteByNumber } from '../redux/actions/index';
 import Nav from './Nav';
+import Footer from './Footer';
 import PokeCard from './PokeCard';
 
 export default function Favorites() {
@@ -10,8 +11,8 @@ export default function Favorites() {
     const favorites = useSelector(state => state.favorites);
     const dispatch = useDispatch();
     const [select, setSelect] = useState({
-        name:'',
-        number:''
+        name: '',
+        number: ''
     })
 
     const [page, setPage] = useState(1);
@@ -24,20 +25,20 @@ export default function Favorites() {
         setPage(value);
     }
 
-    function handleSortName(e){
+    function handleSortName(e) {
         dispatch(sortFavoriteByName(e.target.value));
         setSelect({
             name: e.target.value,
-            number:''
+            number: ''
         })
         setPage(1);
     }
 
-    function handleSortNumber(e){
+    function handleSortNumber(e) {
         dispatch(sortFavoriteByNumber(e.target.value));
         setSelect({
             number: e.target.value,
-            name:''
+            name: ''
         })
         setPage(1);
     }
@@ -75,8 +76,8 @@ export default function Favorites() {
                         justifyContent='center'
                     >
                         {currentFavorites?.map(poke => {
-                            return <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-                                <PokeCard id={poke.id} name={poke.name} type={poke.types} image={poke.image} key={poke.id} />
+                            return <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={poke.id}>
+                                <PokeCard id={poke.id} name={poke.name} type={poke.types} image={poke.image} />
                             </Grid>
                         })}
                     </Grid>
@@ -98,8 +99,11 @@ export default function Favorites() {
                     </Grid>
                 </>
 
-                : <Typography variant="h4" style={{marginTop:'40vh'}}> No tenes favoritos</Typography>
+                : <div style={{ height: '39.7vh' }}>
+                    <Typography variant="h4" style={{ marginTop: '38vh' }}>You don't have favorites</Typography>
+                </div>
             }
+            <Footer />
         </>
     )
 }
