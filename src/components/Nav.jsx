@@ -12,7 +12,7 @@ export default function Nav() {
 
     return (
         <AppBar position="static">
-            <Toolbar style={{ marginBotton: '5vh' }}>
+            <Toolbar style={{ marginBotton: '5vh', height:'8vh' }}>
                 <Grid container direction="row" justifyContent="space-between" alignItems="center">
                     <Link to={`/pokedex`} style={{ textDecoration: 'none', color: 'white' }}>
                         <Typography>Pokedex</Typography>
