@@ -99,8 +99,8 @@ export default function Favorites() {
                     </Grid>
                 </>
 
-                : <div style={{ height: '39.7vh' }}>
-                    <Typography variant="h4" style={{ marginTop: '38vh' }}>You don't have favorites</Typography>
+                : <div style={{ height: '84vh', display:'flex', alignItems:'center', justifyContent:'center' }}>
+                    <Typography variant="h4">You don't have favorites</Typography>
                 </div>
             }
             <Footer />
