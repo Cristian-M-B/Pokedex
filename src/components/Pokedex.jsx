@@ -65,8 +65,9 @@ export default function Pokedex() {
                         container
                         direction='row'
                         justifyContent='center'
+                        style={{ marginTop: '3vh', marginBottom: '3vh' }}
                     >
-                        <FormControl variant="standard" style={{ width: 120, margin: '3vh' }}>
+                        <FormControl variant="standard" style={{ width: 90, marginRight: '2vh' }}>
                             <InputLabel>Name</InputLabel>
                             <Select value={select.name} onChange={(e) => handleSortName(e)}>
                                 <MenuItem value='asc'>A - Z</MenuItem>
@@ -74,7 +75,7 @@ export default function Pokedex() {
                             </Select>
                         </FormControl>
 
-                        <FormControl variant="standard" style={{ width: 120, margin: '3vh' }}>
+                        <FormControl variant="standard" style={{ width: 90, marginRight: '2vh' }}>
                             <InputLabel>Number</InputLabel>
                             <Select value={select.number} onChange={(e) => handleSortNumber(e)}>
                                 <MenuItem value='asc'>1 - 251</MenuItem>
@@ -82,7 +83,7 @@ export default function Pokedex() {
                             </Select>
                         </FormControl>
 
-                        <FormControl variant="standard" style={{ width: 120, margin: '3vh' }}>
+                        <FormControl variant="standard" style={{ width: 90, marginRight: '2vh' }}>
                             <InputLabel>Type</InputLabel>
                             <Select value={select.filter} onChange={(e) => handleFilterType(e)}>
                                 <MenuItem value='all'>All</MenuItem>
@@ -97,7 +98,7 @@ export default function Pokedex() {
                         justifyContent='center'
                     >
                         {currentPokemons?.map(poke => {
-                            return <Grid item xs={12} sm={6} md={4} lg={3} xl={2}  key={poke.id}>
+                            return <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={poke.id}>
                                 <PokeCard id={poke.id} name={poke.name} types={poke.types} image={poke.image} />
                             </Grid>
                         })}
@@ -115,15 +116,14 @@ export default function Pokedex() {
                             variant="outlined"
                             shape="rounded"
                             color="primary"
-                            style={{ marginBottom: "2vw ", marginTop: "1vw" }}
+                            style={{ marginBottom: "2vh", marginTop: "1vh" }}
                         />
                     </Grid>
                 </>
 
-                : <div style={{ height: '77.7vh' }}>
+                : <div style={{ height: '84vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <CircularProgress
                         size={60}
-                        style={{ marginTop: '40vh' }}
                     />
                 </div>
             }
