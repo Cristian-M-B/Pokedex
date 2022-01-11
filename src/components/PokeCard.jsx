@@ -1,28 +1,28 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Grid, Card, CardActionArea, CardContent, CardActions, Typography, IconButton, Divider } from '@material-ui/core';
+import { Card, CardActionArea, CardContent, CardActions, Typography, IconButton, Divider } from '@material-ui/core';
 import { Favorite, Share } from '@material-ui/icons';
 import { WhatsappShareButton, FacebookShareButton, WhatsappIcon, FacebookIcon } from 'react-share';
 import { addFavorite, removeFavorite } from '../redux/actions/index';
 import images from '../assets/images.js';
 
-export default function PokeCard({id, name, image, types}) {
+export default function PokeCard({ id, name, image, types }) {
     const [shareOpen, setShareOpen] = useState(false);
     const favorites = useSelector(state => state.favorites)
     const dispatch = useDispatch();
     let status = false;
 
-    function handleFavorite(){
+    function handleFavorite() {
         let status = favorites?.find(pokemon => pokemon.id === id);
-        if(!status){
-            dispatch(addFavorite({id, name, image, types}));
+        if (!status) {
+            dispatch(addFavorite({ id, name, image, types }));
         } else {
             dispatch(removeFavorite(id));
         }
     }
 
-    function handleShare(){
+    function handleShare() {
         setShareOpen(!shareOpen);
     }
 

@@ -17,7 +17,7 @@ export default function Pokedex() {
     });
 
     const [page, setPage] = useState(1);
-    const [pokemonsPerPage, setPokemonsPerPage] = useState(12);
+    const pokemonsPerPage = 12;
     const indexLastPokemons = page * pokemonsPerPage;
     const indexFirstPokemons = indexLastPokemons - pokemonsPerPage;
     const currentPokemons = pokemons.slice(indexFirstPokemons, indexLastPokemons);

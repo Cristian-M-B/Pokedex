@@ -7,7 +7,6 @@ import Footer from './Footer';
 import PokeCard from './PokeCard';
 
 export default function Favorites() {
-    const types = useSelector(state => state.types);
     const favorites = useSelector(state => state.favorites);
     const dispatch = useDispatch();
     const [select, setSelect] = useState({
@@ -16,7 +15,7 @@ export default function Favorites() {
     })
 
     const [page, setPage] = useState(1);
-    const [favoritesPerPage, setFavoritesPerPage] = useState(12);
+    const favoritesPerPage = 12;
     const indexLastFavorite = page * favoritesPerPage;
     const indexFirstFavorite = indexLastFavorite - favoritesPerPage;
     const currentFavorites = favorites.slice(indexFirstFavorite, indexLastFavorite);

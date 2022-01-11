@@ -17,7 +17,7 @@ export default function PokeDetail() {
         return () => {
             dispatch(removeDetail())
         }
-    }, [])
+    }, [dispatch, id])
 
     const pokemon = useSelector(state => state.detail);
 
@@ -44,7 +44,7 @@ export default function PokeDetail() {
                         <Typography align='left' variant='h4' style={{ marginBottom: '4vh' }}> #{pokemon?.id} {pokemon?.name}</Typography>
                         <Grid container direction='row' justifyContent='center'>
                             {pokemon?.types?.map(type => {
-                                return <img key={type} src={images[type]} height='90vh' />
+                                return <img key={type} src={images[type]} alt={`${type}`} height='90vh' />
                             })}
                         </Grid>
                         <Grid container direction='row' justifyContent='space-between' style={{ marginTop: '4vh' }}>
