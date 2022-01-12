@@ -83,7 +83,7 @@ export default function Pokedex() {
                             </Select>
                         </FormControl>
 
-                        <FormControl variant="standard" style={{ width: 90, marginRight: '2vh' }}>
+                        <FormControl variant="standard" style={{ width: 90 }}>
                             <InputLabel>Type</InputLabel>
                             <Select value={select.filter} onChange={(e) => handleFilterType(e)}>
                                 <MenuItem value='all'>All</MenuItem>
@@ -116,7 +116,7 @@ export default function Pokedex() {
                             variant="outlined"
                             shape="rounded"
                             color="primary"
-                            style={{ marginBottom: "2vh", marginTop: "1vh" }}
+                            style={{ marginBottom: "2vw", marginTop: "1vw" }}
                         />
                     </Grid>
                 </>

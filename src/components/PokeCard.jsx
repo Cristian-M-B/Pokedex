@@ -55,13 +55,13 @@ export default function PokeCard({ id, name, image, types }) {
                 {shareOpen && (
                     <>
                         <WhatsappShareButton
-                            url={`http://localhost:3000/pokedex/detail/${id}`}
+                            url={`http://poke-mania.vercel.app/pokedex/detail/${id}`}
                             title="¡Mira este pokemon!"
                         >
                             <WhatsappIcon round={true} style={{ width: "5vh", height: "5vh" }} />
                         </WhatsappShareButton>
                         <FacebookShareButton
-                            url={`http://localhost:3000/pokedex/detail/${id}`}
+                            url={`http://poke-mania.vercel.app/pokedex/detail/${id}`}
                             quote="¡Mira este pokemon!"
                             hashtag="#pokemon"
                         >
