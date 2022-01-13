@@ -6,7 +6,7 @@ import { Grid, CardMedia, Typography, CircularProgress } from '@material-ui/core
 import Nav from './Nav';
 import Footer from './Footer';
 import images from '../assets/images.js';
-import './animations.css';
+import '../styles/animations.css';
 
 export default function PokeDetail() {
     const { id } = useParams();
