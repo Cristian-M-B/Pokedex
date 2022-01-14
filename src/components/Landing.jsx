@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Grid, Button } from '@material-ui/core';
 import '../styles/animations.css';
 
-export default function Landing() {
+export default function Landing({ image }) {
     return (
         <Grid
             container
@@ -13,7 +13,7 @@ export default function Landing() {
             style={{ height: '100vh' }}
             className='animations'
         >
-            <img src='https://media.vandal.net/i/1280x720/10-2021/2021105724573_1.jpg.webp' alt='Landing' style={{ width: '70%' }} />
+            <img src={image} alt='Landing' style={{ width: '70%' }} />
             <Link to={"/pokedex"} style={{ textDecoration: 'none' }}>
                 <Button variant="outlined">Enter</Button>
             </Link>
