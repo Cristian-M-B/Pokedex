@@ -5,17 +5,28 @@ import { AppBar, Toolbar, Grid, Typography, IconButton, Badge } from '@material-
 import { Favorite, MusicNote, MusicOff } from '@material-ui/icons';
 import SearchBar from './SearchBar';
 import opening from '../assets/audios/opening.mp3';
+import { makeStyles } from "@material-ui/styles";
+
+const useStyles = makeStyles((theme) => ({
+    text: {
+        "&:hover": {
+            fontWeight: "bold",
+            textShadow: "0 0 10px rgba(255, 255, 255, 0.7)"
+        }
+    }
+}));
 
 export default function Nav() {
     const [sound, setSound] = useState(false);
     const favorites = useSelector(state => state.favorites);
+    const classes = useStyles();
 
     return (
         <AppBar position="static">
             <Toolbar style={{ marginBotton: '5vh', height:'8vh' }}>
                 <Grid container direction="row" justifyContent="space-between" alignItems="center">
                     <Link to={`/pokedex`} style={{ textDecoration: 'none', color: 'white' }}>
-                        <Typography>Pokedex</Typography>
+                        <Typography variant="h6" className={classes.text}>Pokedex</Typography>
                     </Link>
                     <SearchBar />
                     <Grid justifyContent="flex-end">
