@@ -1,0 +1,24 @@
+.landing {
+    background-image: url(https://wallpaperaccess.com/full/836497.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 85%;
+    height: 100vh; 
+    width: 100vw;
+}
+
+.button {
+    top: 8.5vh;
+    left: 2.5vh;
+}
+
+.button:hover {
+    color: black;
+}
+
+@media (max-width: 600px) {
+    .button {
+        top: 16.5vh;
+        left: 3.5vh;
+    }
+}
