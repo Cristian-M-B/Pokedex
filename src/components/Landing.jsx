@@ -1,22 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Grid, Button } from '@material-ui/core';
-import '../styles/animations.css';
+import { Button } from '@material-ui/core';
+import '../styles/landing.css';
 
-export default function Landing({ image }) {
+export default function Landing() {
     return (
-        <Grid
-            container
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
-            style={{ height: '100vh' }}
-            className='animations'
-        >
-            <img src={image} alt='Landing' style={{ width: '70%' }} />
+        <div className='landing'>
             <Link to={"/pokedex"} style={{ textDecoration: 'none' }}>
-                <Button variant="outlined">Enter</Button>
+                <Button variant="contained" className='button'>
+                    Pokedex
+                </Button>
             </Link>
-        </Grid>
+        </div>
     )
 }

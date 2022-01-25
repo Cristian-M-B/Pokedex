@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getPokemons, getTypes, getFavorites } from './redux/actions/index';
-import './App.css';
 import Landing from './components/Landing.jsx';
 import Pokedex from './components/Pokedex.jsx';
 import PokeDetail from './components/PokeDetail.jsx';
 import Favorites from './components/Favorites.jsx';
+import './App.css';
 
 
 export default function App() {
@@ -21,9 +21,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <Route exact path='/'>
-        <Landing image='https://media.vandal.net/i/1280x720/10-2021/2021105724573_1.jpg.webp' />
-      </Route>
+      <Route exact path='/' component={Landing} />
       <Route exact path='/pokedex' component={Pokedex} />
       <Route exact path='/pokedex/detail/:id' component={PokeDetail} />
       <Route exact path='/pokedex/favorites' component={Favorites} />
