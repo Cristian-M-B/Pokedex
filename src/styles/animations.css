@@ -11,3 +11,17 @@
         margin-left: 0%;
     }
 }
+
+.animations-inverse{
+    animation-duration: 3s;
+    animation-name: slidein-inverse;
+}
+
+@keyframes slidein-inverse {
+    from {
+        margin-right: 100%;
+    }
+    to {
+        margin-right: 0%;
+    }
+}
