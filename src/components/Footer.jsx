@@ -29,7 +29,7 @@ export default function Footer() {
                             <BusinessCenter className={classes.icon} />
                         </IconButton>
                     </a>
-                    <a href='https://drive.google.com/file/d/1RxU-PS31Dnl6xrYCbIyAXI9s51hlbREu/view' target='_blank' rel='noreferrer'>
+                    <a href='https://drive.google.com/file/d/1EWywTxazYLBrPrc-nFgOP7tPb7-bApcm/view' target='_blank' rel='noreferrer'>
                         <IconButton>
                             <PictureAsPdf className={classes.icon} />
                         </IconButton>
